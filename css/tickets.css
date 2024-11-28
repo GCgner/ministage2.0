@@ -1,0 +1,51 @@
+header.common{
+    background-color: #8c98a4;
+    position : fixed;
+    top : 0;
+    left: 0;
+}
+
+aside{
+    position: fixed;
+    height: 100vh;
+    width: 450px;
+    background-color: #2c3347;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.data{
+    margin-left:450px;
+    margin-top: 119px;
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+}
+.ticket{
+    width: 30%;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius : 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ticket button {
+    outline : none;
+    border: none;
+    padding: 4px 16px;
+    background-color: #0057ff;
+    border-color: #0057ff;
+    transition: all 0.25s ease-in-out;
+    border-radius: 7px;
+    width: 350px;
+    color: white;
+    margin-top: 0;
+}
+
+.ticket button:hover{
+    margin-top: -5px;
+}

@@ -1,0 +1,143 @@
+* {
+    padding : 0;
+    margin : 0;
+    font-family : 'Poppins', 'Anton', 'Calibri', 'Trebuchet MS', sans-serif;
+    /* color: rgb(0, 0, 0); */
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+article {
+    height : 100vh;
+    width : 100vw;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#body_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../asset/bg-login.png");
+    background-size: cover;
+    object-fit: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#form_login {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 20vw;
+    height: auto;
+    padding: 2vw;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+h2 > span {
+    color : #297cbb;
+}
+
+#bg{
+    backdrop-filter: blur(4px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#bloc-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: max-content;
+}
+
+#bloc {
+    background-color: #297cbb;
+    min-height: 20.2vw;
+    height: 100%;
+    width: 13vw;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#input_email {
+    border: none;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    width: 15vw;
+    margin-left: 0.5vw;
+    margin-bottom: 1vw;
+    height: 2vw;
+    font-size: 1vw;
+    outline: none;
+}
+
+#input_password {
+    border: none;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    width: 15vw;
+    margin-left: 0.5vw;
+    margin-bottom: 1.5vw;
+    height: 2vw;
+    font-size: 1vw;
+    outline: none;
+}
+
+#form_login h2 {
+    margin-bottom: 1vw;
+    font-size: 1.5vw;
+}
+
+#para_connexion {
+    margin-bottom: 2vw;
+    font-size: 0.9vw;
+}
+
+#btn {
+    border: 0;
+    font-size: 0.9vw;
+    color: white;    
+    background-color: #297cbb;
+    width: 6vw;
+    height: 2.5vw;
+    border-radius: 5vw;
+    
+    transition: all 0.3s ease 0s;
+}
+
+#btn:hover {
+    background-color: #05aac7;
+}
+
+#div_email svg , #div_password svg {
+    width: 1vw;
+    height: 1vw;
+    padding-top: 0.5vw;
+}
+
+#div_email , #div_password {
+    display: flex;
+    flex-direction: row;
+}
+
+#div_connexion{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#div_connexion p {
+    margin-right: 1vw;
+}

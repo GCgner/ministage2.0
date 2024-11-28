@@ -1,0 +1,199 @@
+* {
+    padding : 0;
+    margin : 0;
+    font-family : 'Poppins', 'Anton', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: 26px;
+}
+
+html, body {
+    /* overflow-x: hidden; */
+    min-height: 100vh;
+}
+
+aside{
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    background-color: #2c3347;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color:white;
+    z-index:10;
+}
+
+div#hero {
+    width: 100%;
+    height: 300px;
+    background-color: rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 25px auto;
+    background-image: url("../asset/avatar.png");
+    background-size: cover;
+    background-position: center;
+}
+
+nav ul, nav ul li{
+    list-style: none;
+    width: 100%;
+}
+
+nav ul li{
+    height: 95px;
+    border-top: 2.5px solid rgba(0,0,0,0.1);
+    border-bottom: 2.5px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+nav ul li:hover{
+    background-color: rgba(54,140,214,0.7);
+}
+
+#logout{
+    background-color: rgba(215,32,28,0.7);
+}
+
+#logout:hover{
+    background-color: rgba(255, 4, 0, 0.815);
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+main{
+    margin-left: 250px;
+    min-height: 100vh;
+}
+
+#main-menu {
+    padding: 25px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-div {
+    margin-bottom: 50px;
+}
+
+.title-div > h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 25px 0;
+    margin-bottom: 50px;
+}
+
+.container .btn {
+    padding: 6px 4px;
+    color: white;
+    border-radius: 5px;
+    width: fit-content;
+    display: inline-block;
+    transition: background-color 0.2s ease-in;
+}
+
+.container > .container {
+    width: 100%;
+    padding: 0 50px;
+    justify-content: space-between;
+}
+
+.container > .container > input {
+    width: 85%;
+}
+
+form .container {
+    margin-bottom: 15px;
+}
+
+.create, .accept {
+    background-color: darkgreen;
+    border: solid 1px darkgreen;
+}
+
+.create:hover, .accept:hover {
+    background-color: green;
+}
+
+.delete, .decline {
+    background-color: darkred;
+    border: solid 1px darkred;
+}
+
+.delete:hover, .decline:hover {
+    background-color: red;
+}
+
+#modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#modal.inactive {
+    display: none;
+}
+
+.modal-in {
+    height: 20vw;
+    width: 25vw;
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: justify;
+}
+
+.modal-in h3 {
+    font-size: 30px;
+}
+
+.vld-btn {
+    color:white;
+    font-size: 50px;
+    width: 50px;
+    padding: 2px;
+    border-radius: 5px;
+}

@@ -1,0 +1,149 @@
+header.common{
+    background-color: #8c98a4;
+    position : fixed;
+    top : 0;
+    left: 0;
+}
+
+main{
+    margin-top: 119px;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.data{
+    width: 60%;
+    height: 600px;
+    border: 1px solid black;
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.top-info, .from-to, .seat-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 75px;
+    width: 100%;
+}
+
+.data > .seat-info{
+    margin: 0;
+}
+
+.top-info{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.top-info p{
+    color: grey;
+    font-size: 16px;
+}
+
+.from-to h3{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.from-to .sign span{
+    font-size: 70px;
+    font-weight: 600;
+}
+
+.seat-info{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.seat-info p{
+    color: grey;
+}
+
+.purchase{
+    width: 20%;
+    height: 600px;
+    background-color: rgb(6, 109, 122);
+    border-radius: 0 15px 15px 0;
+    padding: 25px;
+    text-align :center;
+    color: white;
+}
+
+.purchase h2{
+    color :white;
+    margin-top: 30px;
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: dashed 1px white;
+}
+
+.purchase .info{
+    color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.purchase .info .in-info{
+    width: 45%;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.purchase .info .in-info p{
+    color:rgb(214, 214, 214);
+}
+
+.purchase .info .in-info span{
+    color : white;
+}
+
+.purchase .price, .purchase .price h3{
+    font-weight: 600;
+}
+
+.purchase .price p{
+    color :rgb(214, 214, 214);
+    font-size: 20px;
+}
+
+.purchase .price h3{
+    color: white;
+    font-size: 24px;
+}
+
+.purchase form button{
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    background-color: #e27a04;
+    padding : 20px 0;
+    width: 100%;
+    font-size: 20px;
+    color : white;
+    transition: all 0.25s ease-in-out;
+}
+
+.purchase form button:hover{
+    box-shadow: 0 0 5px 5px #ac5c02;
+    text-shadow: 0 0 5px white;
+}
+
+.travel{
+    font-size : 24px;
+}
+
+.travel, .travel p, .travel p span{
+    color : rgb(214, 214, 214);
+    text-align: center;
+}

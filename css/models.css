@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+
+.seats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 35px;
+}
