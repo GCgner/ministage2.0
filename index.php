@@ -9,7 +9,7 @@ use Application\Router\MainRouter;
 
 if(!isset($_SESSION['user'])) Tools::defaultUser();
 
-$uri = str_replace('/ministage','',$_SERVER['REQUEST_URI']);
+$uri = str_replace('Github/ministage2.0','',$_SERVER['REQUEST_URI']);
 
 $_SESSION['err'] = isset($_SESSION['err']) ? $_SESSION['err'] : null;
 $_SESSION['success'] = isset($_SESSION['success']) ? $_SESSION['success'] : null;
@@ -18,6 +18,7 @@ $router = new MainRouter($uri);
 
 $router->get('/', 'MainForm#execute');
 $router->post('/request', 'MainForm#request');
+$router->post('/create-request', 'Request#createRequest');
 $router->get('/login','Login#execute');
 $router->post('/login','Login#login');
 $router->get('/logout','Login#logout');
@@ -38,6 +39,8 @@ $router->post('/delete-slot','Slot#deleteSlot');
 // $router->get('/modify-slot','');
 // $router->post('/modify-slot','');
 $router->post('/create-request','Request#createRequest');
+$router->get('/valid-request/:id','Request#validRequest');
+$router->get('/valid-request/:id','Request#validRequest');
 $router->get('/valid-request/:id','Request#validRequest');
 
 

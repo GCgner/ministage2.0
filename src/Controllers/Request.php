@@ -1,5 +1,6 @@
 <?php
 
+
 namespace Application\Controllers;
 
 use Application\Lib\Tools;
@@ -9,6 +10,7 @@ use Application\Model\RequestRepository;
 use Application\Model\SlotRepository;
 
 class Request {
+
     private function getRepo():RequestRepository {
         $db = new DatabaseConnection();
         $logger = new Logger($db);
@@ -20,6 +22,8 @@ class Request {
         $logger = new Logger($db);
         return new SlotRepository($db,$logger);
     }
+
+
     
     private function verify(array $input):array|string {
         if(!isset($input['firstname']) || empty($input['firstname'])) return('Le prénom fourni n\'est pas valide !');
@@ -100,13 +104,19 @@ class Request {
     public function createRequest() {
 
         $isValid = Tools::verifyUser();
-        if(!$isValid) Tools::redirect('./');
+        if($isValid) Tools::redirect('./');
 
         $isAdmin = Tools::userIsAdmin();
 
         $user = Tools::getSession();
 
         $input = $_POST;
+
+
+
+
+
+
 
         $input = $this->verify($input);
 
@@ -129,7 +139,6 @@ class Request {
 
         require_once('templates/main_form.php');
     }
-
     public function validRequest($id) {
 
         $isValid = Tools::verifyUser();

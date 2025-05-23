@@ -98,7 +98,7 @@ class User {
 
             $userRepository->registerUser($input);
 
-            throw new \Exception("Une erreur est survenue durant l'envoie du mail, voici le mot de passe del'utilisateur : ".$clearPassword);
+            //throw new \Exception("Une erreur est survenue durant l'envoie du mail, voici le mot de passe del'utilisateur : ".$clearPassword);
         
             // try{
                 // mail(
@@ -126,6 +126,7 @@ class User {
     public function deleteUser() {
         $isValid = Tools::verifyUser();
         if(!$isValid) Tools::redirect('./');
+
 
         $isAdmin = Tools::userIsAdmin();
         if(!$isAdmin) Tools::redirect('./');
@@ -164,5 +165,11 @@ class User {
 
         $_SESSION['err'] = $err;
         $_SESSION['success'] = $success;
+
+        Tools::redirect('/Github/ministage2.0/users');
+
     }
+
+
+
 }

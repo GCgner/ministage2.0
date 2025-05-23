@@ -12,7 +12,7 @@
 <body id="body_request">
     <div id="bg"></div>
     <div id="bloc"></div>
-    <form id="form_request" action="create-request" method="POST">
+    <form id="form_request" action="/create-request" method="POST">
         <div id="form_head">
             <h2><span>Ministage</span> | Demande</h2>
             <p id="para_request">Remplissez le formulaire pour faire une demande de stage : </p>

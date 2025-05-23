@@ -30,7 +30,7 @@ ob_start();
             <form action="delete-user" method="post">
                 <select name="userId" id="selector">
                     <option value="0" default>Sélectionner un utilisateur</option>
-                    <?php 
+                    <?php
                         foreach($users as $row) {
                             ?>
                             <option value="<?= $row->getUserId(); ?>"><?= $row->getFirstname().' '.strtoupper($row->getLastname()); ?></option>
@@ -38,21 +38,8 @@ ob_start();
                         }
                     ?>
                 </select>
-                <button id="pre-suppr" class="btn delete" type="disabled">Supprimer un utilisateur</button>
-                <div id="modal" class="inactive">
-                    <div class="modal-in">
-                        <h3>Attention !</h3>
-                        <p>
-                            Vous êtes sur le point de supprimer un utilisateur, cette action n'est pas réversible.
-                            </br>
-                            Êtes-vous certain de vouloir supprimer <strong id="strong"></strong> ?
-                        </p>
-                        <div>
-                            <button class="btn delete" type="submit">Supprimer</button>
-                            <button class="btn create" id="back" type="disabled">Annuler</button>
-                        </div>
-                    </div>
-                </div>
+                <button  class="btn delete" type="submit">Supprimer un utilisateur</button>
+
             </form>
         </div>
     </div>

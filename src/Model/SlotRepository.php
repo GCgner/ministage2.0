@@ -28,7 +28,8 @@ class SlotRepository extends Repository
             return $data;
         }
         catch(\Exception $e){
-            return 'Erreur :'.$e->getMessage();
+            error_log('Erreur:'.$e->getMessage());
+            return [];
         }
     }
     

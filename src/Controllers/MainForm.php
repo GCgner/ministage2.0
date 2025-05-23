@@ -26,6 +26,7 @@ class MainForm {
 
     public function execute()
     {
+
         $requestRepository = $this->getSlotRepo();
 
         $slots = $requestRepository->getSlots();

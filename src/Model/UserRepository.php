@@ -84,6 +84,8 @@ Class UserRepository extends Repository
         catch(\Exception $e){
             return 'Erreur :'.$e->getMessage();
         }
+
+
     }
 
     public function deleteUser(int $idUser):bool
@@ -129,44 +131,43 @@ Class UserRepository extends Repository
 
     public function getUserByEmail(string $email):array|bool
     {
-        $query = 'SELECT * FROM '.static::TABLE_NAME.' WHERE email = "'.$email.'"';
+     $query = 'SELECT * FROM '.static::TABLE_NAME.' WHERE email = ?';
+    $stmt = $this->database->getConnection()->prepare($query);
+    $stmt->execute([$email]);
 
-        $userStatement = $this->database->getConnection()->query($query);
+    $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        if (!$userStatement) {
-            throw new \RuntimeException('L\'email indiqué ne correspond à aucun utilisateur existant');
-        }
+    if (!$user) {
+        return false;
+    }
 
-        return $userStatement->fetch();
+    return $user;
     }
 
     public function connectUser(array $input):bool|string
     {
-
-        try
-        {
-
+        try {
             $userData = $this->getUserByEmail($input['email']);
 
-            if(!$userData || !password_verify($input['password'],$userData['password']))
-            {
-                throw new \RuntimeException('L\'email et le mot de passe indiqué ne correspondent à aucun compte existant');
+            if (!$userData || !password_verify($input['password'], $userData['password'])) {
+                return 'Erreur : L\'email et le mot de passe ne correspondent à aucun compte existant';
             }
+
+            // Création de l'objet utilisateur et stockage en session
             $userObject = new User($userData);
-    
             $_SESSION['user'] = serialize($userObject);
-    
-            $name = 'Connection of a user';
-            $log = 'Connection of the user with the id_user equal to '.$userObject->getUserId().', after a SELECT to verify the email and the password';
-            $action = 'SELECT';
-            $this->newLog($name,$log,$action);
+
+            // Journalisation de la connexion
+            $name = 'Connexion d\'un utilisateur';
+            $log = 'Connexion réussie pour l\'utilisateur avec l\'ID ' . $userObject->getUserId();
+            $action = 'LOGIN';
+            $this->newLog($name, $log, $action);
 
             return true;
+        } catch (\Exception $e) {
+            return 'Erreur : ' . $e->getMessage();
         }
-        catch (\RuntimeException $e)
-        {
-            return 'Erreur :'.$e->getMessage();
-        }
+
     }
 
     public function disconnectUser():void

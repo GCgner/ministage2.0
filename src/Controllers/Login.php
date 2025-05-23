@@ -24,31 +24,31 @@ class Login
 
     public function login() 
     {
-
         $input = $_POST;
 
-        if(!isset($input['email']) ||  !filter_var($input['email'],FILTER_VALIDATE_EMAIL) || !isset($input['password']) || empty($input['password']))
-        {
-            throw new \RuntimeException('Les identifiants ne correspondent à aucun compte existant');
+        if(!isset($input['email']) || !filter_var($input['email'], FILTER_VALIDATE_EMAIL) || !isset($input['password']) || empty($input['password'])) {
+            $_SESSION['err'] = "Les identifiants ne correspondent à aucun compte existant";
+            Tools::redirect('/login');
+            return;
         }
 
         $userRepository = $this->getRepo();
         $success = $userRepository->connectUser($input);
 
-        if(!is_string($success)) 
+        if($success === true)
         {
             $link = './home';
-            if(isset($_SESSION['redirect']))
-            {
+            if(isset($_SESSION['redirect'])) {
                 $link = $_SESSION['redirect'];
                 unset($_SESSION['redirect']);
             }
             Tools::redirect($link);
         }
-        
-        $error = $success;
-
-        require('templates/login.php');
+        else
+        {
+            $_SESSION['err'] = $success; // Stocke le message d'erreur retourné par `connectUser`
+            Tools::redirect('/login');
+        }
     }
 
     public function logout()

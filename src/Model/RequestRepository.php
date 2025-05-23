@@ -14,6 +14,8 @@ class RequestRepository extends Repository
     const ATTRIBUTES_NAME = 'request_id,firstname,lastname,class,birthday,parent_firstname,parent_lastname,address,phone,email,main_teacher,accepted,slot_id';
     const ATTRIBUTES_PREPARE = '?,?,?,?,?,?,?,?,?,?,?,?';
 
+
+
     public function getRequests():array
     {
         try {
@@ -176,4 +178,5 @@ class RequestRepository extends Repository
             return 'Erreur :'.$e->getMessage();
         }
     }
+
 }

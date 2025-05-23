@@ -20,14 +20,14 @@ ob_start();
     <div class="title-div">
         <h1>Demandes :</h1>
     </div>
-    <!-- <div class="container">
+     <div class="container">
         <a href="create-request">
             <button class="btn create">
                 Créer une demande
             </button>
         </a>
         <div>
-            <form action="delte-request" method="post">
+            <form action="delete-request" method="post">
                 <select name="userId" id="selector">
                     <option value="0" default>Sélectionner une demande</option>
                 </select>
@@ -48,8 +48,9 @@ ob_start();
                 </div>
             </form>
         </div>
-    </div> -->
-    <div class="data">
+    </div>
+
+      <div class="data">
         <table id='table'>
             <thead>
                 <tr>
@@ -68,6 +69,7 @@ ob_start();
                 </tr>
             </thead>
             <tbody>
+
                 <?php
                     foreach($requests as $row)
                     {
@@ -91,7 +93,7 @@ ob_start();
                 ?>
             </tbody>
         </table>
-    </div>
+     </div>
 </article>
 <?php
 
