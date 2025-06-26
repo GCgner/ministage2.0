@@ -103,42 +103,38 @@ class Request {
 
     public function createRequest() {
 
-        $isValid = Tools::verifyUser();
-        if($isValid) Tools::redirect('./');
-
-        $isAdmin = Tools::userIsAdmin();
-
-        $user = Tools::getSession();
-
-        $input = $_POST;
-
-
-
-
-
-
-
-        $input = $this->verify($input);
-
-        $err = '';
+        // ✅ SUPPRIMÉ LA VÉRIF POUR UTILISATEUR CONNECTÉ
+        $_SESSION['err'] = null;
+        $_SESSION['success'] = null;
 
         try {
-            if(is_string($input)) throw new \Exception($input);
+            $input = $_POST;
 
+            // Validation et nettoyage des données
+            $verifiedInput = $this->verify($input);
+            if (is_string($verifiedInput)) {
+                throw new \Exception($verifiedInput);
+            }
+
+            // Insertion de la demande
             $requestRepository = $this->getRepo();
+            $newId = $requestRepository->insertRequest($verifiedInput);
 
-            $requestRepository->insertRequest($input);
-        } catch(\Exception $e) {
-            $err = $e->getMessage();
-            echo $err;
+            if (!is_int($newId)) {
+                throw new \Exception("Une erreur est survenue lors de l'enregistrement de la demande.");
+            }
+
+            $_SESSION['success'] = 'Demande enregistrée avec succès.';
+        } catch (\Exception $e) {
+            $_SESSION['err'] = $e->getMessage();
         }
 
-        $success = true;
+        // ✅ Redirige vers le formulaire principal
+        Tools::redirect('/GitHub/ministage2.0/');
 
-        if($err != '') $success = false;
+        }
 
-        require_once('templates/main_form.php');
-    }
+
     public function validRequest($id) {
 
         $isValid = Tools::verifyUser();
@@ -191,6 +187,14 @@ class Request {
         $_SESSION['err'] = $err;
         $_SESSION['success'] = $success;
 
-        Tools::redirect('../requests');
+        Tools::redirect('/Github/ministage2.0/requests');
     }
+    public function createForm() {
+        Tools::verifyUser() || Tools::redirect('./');
+        $err = $_SESSION['err'] ?? '';
+        $success = $_SESSION['success'] ?? null;
+        require_once('templates/request_menu.php');
+    }
+
+
 }

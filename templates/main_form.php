@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -12,20 +14,23 @@
 <body id="body_request">
     <div id="bg"></div>
     <div id="bloc"></div>
-    <form id="form_request" action="/create-request" method="POST">
+    <form action="/GitHub/ministage2.0/create-request" method="POST" >
         <div id="form_head">
             <h2><span>Ministage</span> | Demande</h2>
             <p id="para_request">Remplissez le formulaire pour faire une demande de stage : </p>
         </div>
-        <?php
-            if(isset($error)) {
-                ?>
-                <div id="err">
-                <p>Vos identifiants sont incorrect</p>
-                </div>
-                <?php
-            }
-        ?>
+
+
+        <?php if ($_SESSION['err']): ?>
+            <div class="error"><?= $_SESSION['err'] ?></div>
+            <?php unset($_SESSION['err']); ?>
+        <?php endif; ?>
+
+        <?php if ($_SESSION['success']): ?>
+            <div class="success">Demande envoyée avec succès !</div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
         <div class="div_input" id="div_firstname">
             <Label for="input_firstname">Prénom :</Label>
             <input placeholder="Prénom" id="input_firstname" type="text" name="firstname" required>
@@ -40,7 +45,8 @@
         </div>
         <div class="div_input" id="div_birthday">
             <label for="input_birthday">Date de naissance :</label>
-            <input id="input_birthday" type="date" name="birthday" value="2000-01-01" min="2000-01-01" max="<?php date("Y-m-d") ?>" required>
+            <input id="input_birthday" type="date" name="birthday" value="2000-01-01" min="2000-01-01" max="<?= date("Y-m-d") ?>"
+                   required>
         </div>
         <div class="div_input" id="div_parent_firstname">
             <label for="input_parent_firstname">Prénom du parent :</label>

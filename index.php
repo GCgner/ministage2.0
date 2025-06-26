@@ -7,42 +7,60 @@ require 'Autoloader.php';
 use Application\Lib\Tools;
 use Application\Router\MainRouter;
 
-if(!isset($_SESSION['user'])) Tools::defaultUser();
+// Initialisation de l'utilisateur par défaut si non connecté
+if (!isset($_SESSION['user'])) {
+    Tools::defaultUser();
+}
 
-$uri = str_replace('Github/ministage2.0','',$_SERVER['REQUEST_URI']);
+// Définir le chemin de base de l'application
+$base = '/GitHub/ministage2.0';
+$uri = str_replace($base, '', $_SERVER['REQUEST_URI']);
 
-$_SESSION['err'] = isset($_SESSION['err']) ? $_SESSION['err'] : null;
-$_SESSION['success'] = isset($_SESSION['success']) ? $_SESSION['success'] : null;
+// Initialisation des messages flash s'ils ne sont pas définis
+$_SESSION['err'] ??= null;
+$_SESSION['success'] ??= null;
 
+// Création du routeur principal
 $router = new MainRouter($uri);
 
+// === ROUTES === //
+
+// Page d'accueil / formulaire principal
 $router->get('/', 'MainForm#execute');
-$router->post('/request', 'MainForm#request');
+
+// Route corrigée : Enregistrement d'une demande
 $router->post('/create-request', 'Request#createRequest');
-$router->get('/login','Login#execute');
-$router->post('/login','Login#login');
-$router->get('/logout','Login#logout');
-$router->get('/signup','Signup#execute');
-$router->post('/signup','Signup#signup');
-$router->get('/home','Panel#home');
-$router->get('/users','User#userPanel');
-$router->get('/slots','Slot#slotPanel');
-$router->get('/requests','Request#requestPanel');
-$router->get('/create-user','User#createUserMenu');
-$router->post('/create-user','User#createUser');
-$router->post('/delete-user','User#deleteUser');
-// $router->get('/modify-user','');
-// $router->post('/modify-user','');
-$router->get('/create-slot','Slot#createSlotMenu');
-$router->post('/create-slot','Slot#createSlot');
-$router->post('/delete-slot','Slot#deleteSlot');
-// $router->get('/modify-slot','');
-// $router->post('/modify-slot','');
-$router->post('/create-request','Request#createRequest');
-$router->get('/valid-request/:id','Request#validRequest');
-$router->get('/valid-request/:id','Request#validRequest');
-$router->get('/valid-request/:id','Request#validRequest');
 
+// Authentification
+$router->get('/login', 'Login#execute');
+$router->post('/login', 'Login#login');
+$router->get('/logout', 'Login#logout');
 
+// Inscription
+$router->get('/signup', 'Signup#execute');
+$router->post('/signup', 'Signup#signup');
 
+// Accueil du panel
+$router->get('/home', 'Panel#home');
+
+// Gestion des utilisateurs
+$router->get('/users', 'User#userPanel');
+$router->get('/create-user', 'User#createUserMenu');
+$router->post('/create-user', 'User#createUser');
+$router->post('/delete-user', 'User#deleteUser');
+
+// Gestion des créneaux
+$router->get('/slots', 'Slot#slotPanel');
+$router->get('/create-slot', 'Slot#createSlotMenu');
+$router->post('/create-slot', 'Slot#createSlot');
+$router->post('/delete-slot', 'Slot#deleteSlot');
+
+// Gestion des demandes
+$router->get('/requests', 'Request#requestPanel');
+$router->get('/validate-request', 'Request#validRequest');
+
+// Lancer le routeur
 $router->run();
+
+// Nettoyage des messages flash
+unset($_SESSION['err'], $_SESSION['success']);

@@ -21,11 +21,21 @@ class Panel
     public function home()
     {
         $isValid = Tools::verifyUser();
-        if(!$isValid) Tools::redirect('./');
+        if (!$isValid) Tools::redirect('./');
 
         $isAdmin = Tools::userIsAdmin();
 
-        $user = Tools::getSession();
+
+        // Récupérer la session utilisateur (ex: user_id)
+        $sessionUser = Tools::getSession();
+
+        // On suppose que $sessionUser contient l'id utilisateur
+        $userRepo = $this->getRepo('User'); // récupère le UserRepository
+        $user = null;
+
+        if ($sessionUser && method_exists($sessionUser, 'getUserId')) {
+            $user = $userRepo->getUserById($sessionUser->getUserId());
+        }
 
         require_once('templates/home_panel.php');
     }

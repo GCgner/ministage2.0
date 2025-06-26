@@ -170,6 +170,9 @@ class User {
 
     }
 
-
+    public function getUserId(): int
+    {
+        return $this->user_id;  // ou comment est stocké l'id dans ta classe
+    }
 
 }

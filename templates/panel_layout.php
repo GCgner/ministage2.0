@@ -1,5 +1,17 @@
+<?php
+// Sécuriser la variable $isAdmin
+if (!isset($isAdmin)) {
+    $isAdmin = false;
+}
+
+// Sécuriser la variable $user
+if (!isset($user)) {
+    $user = null;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +20,16 @@
     <?= $loader ?>
     <title>Ministage | Dashboard</title>
 </head>
+
 <body>
     <aside>
         <div id="hero">
             <img id="avatar" src="../img/logo.png">
-            <h1><?= $user->getFirstname() ?> <?=  $user->getLastname() ?></h1>
+            <?php if ($user !== null): ?>
+                <h2>Bienvenue <?= htmlspecialchars($user->getFirstname()) ?> <?=  $user->getLastname() ?> !</h2>
+            <?php else: ?>
+                <h2>Bienvenue invité</h2>
+            <?php endif; ?>
         </div>
         <nav>
         <ul>

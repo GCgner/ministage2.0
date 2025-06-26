@@ -9,29 +9,36 @@ use Application\Model\SlotRepository;
 use Application\Model\RequestRepository;
 
 class MainForm {
+    private $db;
+    private $logger;
 
-    private function getSlotRepo()
+    public function __construct()
     {
-        $database = new DatabaseConnection;
-        $logger = new Logger($database);
-        return new SlotRepository($database,$logger);
+        $this->db = new DatabaseConnection();
+        $this->logger = new Logger($this->db);
     }
 
-    private function getRequestRepo()
+    private function getSlotRepo(): SlotRepository
     {
-        $database = new DatabaseConnection;
-        $logger = new Logger($database);
-        return new RequestRepository($database,$logger);
+        return new SlotRepository($this->db, $this->logger);
+
+    }
+
+    private function getRequestRepo(): RequestRepository
+    {
+        return new RequestRepository($this->db, $this->logger);
     }
 
     public function execute()
     {
 
-        $requestRepository = $this->getSlotRepo();
-
-        $slots = $requestRepository->getSlots();
+        $slotRepository = $this->getSlotRepo();
+        $slots = $slotRepository->getSlots();
 
         require('templates/main_form.php');
+
+        // 💡 Effacer les messages APRES affichage
+        unset($_SESSION['err'], $_SESSION['success']);
     }
 
     public function request()
