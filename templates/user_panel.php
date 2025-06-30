@@ -5,6 +5,7 @@ use Application\Lib\Tools;
 ob_start();
 
 ?>
+
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
@@ -27,7 +28,7 @@ ob_start();
             </button>
         </a>
         <div>
-            <form action="delete-user" method="post">
+            <form action="/GitHub/ministage2.0/delete-user" method="post">
                 <select name="userId" id="selector">
                     <option value="0" default>Sélectionner un utilisateur</option>
                     <?php

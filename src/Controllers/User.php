@@ -166,7 +166,7 @@ class User {
         $_SESSION['err'] = $err;
         $_SESSION['success'] = $success;
 
-        Tools::redirect('/Github/ministage2.0/users');
+        Tools::redirect('/GitHub/ministage2.0/users');
 
     }
 

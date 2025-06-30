@@ -28,8 +28,10 @@ $router = new MainRouter($uri);
 // Page d'accueil / formulaire principal
 $router->get('/', 'MainForm#execute');
 
-// Route corrigée : Enregistrement d'une demande
+//  Enregistrement d'une demande
 $router->post('/create-request', 'Request#createRequest');
+$router->get('/create-request2', 'Request#createForm');
+$router->post('/create-request3', 'Request#createRequestNew');
 
 // Authentification
 $router->get('/login', 'Login#execute');

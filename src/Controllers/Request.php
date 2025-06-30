@@ -191,10 +191,52 @@ class Request {
     }
     public function createForm() {
         Tools::verifyUser() || Tools::redirect('./');
+
+        // Récupérer les créneaux de stage
+        $slotRepo = $this->getSlotRepo();
+        $slots = $slotRepo->getSlots(); // Assurez-vous que cette méthode existe et retourne tous les slots
+
+        // Messages flash
         $err = $_SESSION['err'] ?? '';
         $success = $_SESSION['success'] ?? null;
+
+        // Afficher le formulaire avec les données des stages
         require_once('templates/request_menu.php');
     }
+
+    public function createRequestNew() {
+
+        // SUPPRIMÉ LA VÉRIF POUR UTILISATEUR CONNECTÉ
+        $_SESSION['err'] = null;
+        $_SESSION['success'] = null;
+
+        try {
+            $input = $_POST;
+
+            // Validation et nettoyage des données
+            $verifiedInput = $this->verify($input);
+            if (is_string($verifiedInput)) {
+                throw new \Exception($verifiedInput);
+            }
+
+            // Insertion de la demande
+            $requestRepository = $this->getRepo();
+            $newId = $requestRepository->insertRequest($verifiedInput);
+
+            if (!is_int($newId)) {
+                throw new \Exception("Une erreur est survenue lors de l'enregistrement de la demande.");
+            }
+
+            $_SESSION['success'] = 'Demande enregistrée avec succès.';
+        } catch (\Exception $e) {
+            $_SESSION['err'] = $e->getMessage();
+        }
+
+        // Redirige vers le formulaire principal
+        Tools::redirect('/GitHub/ministage2.0/requests');
+
+    }
+
 
 
 }
