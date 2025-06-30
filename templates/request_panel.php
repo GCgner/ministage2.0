@@ -28,10 +28,15 @@ ob_start();
         </a>
         <div>
             <form action="delete-request" method="post">
-                <select name="userId" id="selector">
-                    <option value="0" default>Sélectionner une demande</option>
+                <select name="requestId" id="selector">
+                    <option value="0" selected disabled>Sélectionner une demande</option>
+                    <?php foreach ($requests as $request): ?>
+                        <option value="<?= $request->getRequestId() ?>">
+                            <?= $request->getFirstname() ?> <?= $request->getLastname() ?> (<?= $request->getClass() ?>)
+                        </option>
+                    <?php endforeach; ?>
                 </select>
-                <button id="pre-suppr" class="btn delete" type="disabled">Supprimer une demande</button>
+                <button id="pre-suppr" class="btn delete" disabled>Supprimer une demande</button>
                 <div id="modal" class="inactive">
                     <div class="modal-in">
                         <h3>Attention !</h3>
